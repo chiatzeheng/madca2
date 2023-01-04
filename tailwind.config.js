@@ -5,7 +5,18 @@ module.exports = {
     colors: {
       transparent: "transparent",
       current: "currentColor",
-      'dark-blue': "#001220"
+      yellow: {
+        1077: "#f2e0c2"
+      },
+    fontFamily: {
+      sans: ["Inter", "ui-sans-serif", "system-ui"],
+      serif: ["ui-serif", "Georgia"],
+      mono: ["ui-monospace", "SFMono-Regular"],
+      display: ["Oswald"],
+      body: ["Inter"],
+    }
+    
+
   },
     extend: {},
   },
