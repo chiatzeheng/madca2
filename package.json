@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --tunnel",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -12,6 +12,9 @@
     "@expo-google-fonts/inria-sans": "^0.2.2",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
+    "@types/react": "~18.0.24",
+    "@types/react-native": "~0.70.6",
+    "axios": "^1.2.2",
     "expo": "~47.0.8",
     "expo-app-loading": "~2.1.1",
     "expo-firebase-app": "^2.0.0",
@@ -19,14 +22,18 @@
     "expo-font": "~11.0.1",
     "expo-status-bar": "~1.4.2",
     "nativewind": "^2.0.11",
+    "pocketbase": "^0.9.1",
     "react": "18.1.0",
+    "react-hook-form": "^7.41.5",
     "react-native": "0.70.5",
     "react-native-dynamic-search-bar": "github:WrathChaos/react-native-dynamic-search-bar#expo",
     "react-native-dynamic-vector-icons": "github:WrathChaos/react-native-dynamic-vector-icons#expo",
+    "react-native-form-component": "^2.6.3",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-tab-view": "^3.3.4",
     "tailwind": "^4.0.0",
-    "twrnc": "^3.5.0"
+    "twrnc": "^3.5.0",
+    "typescript": "^4.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
