@@ -5,8 +5,8 @@ import { TabView, SceneMap } from "react-native-tab-view";
 import FirstRoute from "./screens/settings";
 import SecondRoute from "./screens/homepage";
 import ThirdRoute from "./screens/profile";
-import Auth from "./auth";
 import tw from "twrnc";
+import Fonts from "../context/fonts";
 
 const TabViewExample = () => {
   const [index, setIndex] = React.useState(0);
@@ -20,7 +20,7 @@ const TabViewExample = () => {
   
   const _renderTabBar = (props) => {
     return (
-      <SafeAreaView  style = {tw `absolute bottom-0 w-100 bg-transparent justify-center flex-row mb-15`}>
+      <SafeAreaView  style = {tw `absolute bottom-0 w-100 bg-transparent justify-center flex-row mb-15 pl-5 `}>
     {props.navigationState.routes.map((route, i) => {
       const isActive = props.navigationState.index === i;
       const backgroundColor = isActive ? "#555555" : "#a7a7a7";
@@ -52,6 +52,7 @@ const TabViewExample = () => {
   });
 
   return (
+    
     <TabView
       initialRouteName="Profile"
       style = {tw.style({backgroundColor: "#001220"}  ,`bg-transparent -mb-9`)}
