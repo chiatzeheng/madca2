@@ -7,7 +7,7 @@ import AuthPage from "./components/auth";
 
 const Stack = createNativeStackNavigator();
 
-export default App = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false,}}>
@@ -17,4 +17,6 @@ export default App = () => {
     </NavigationContainer>
   );
 };
+
+export default App;
 

@@ -106,7 +106,7 @@ const renderItem = ({ item }) => (
   <Item title={item.title} body={item.body} />
 );
 
-export default SecondRoute = () => (
+const SecondRoute = () => (
 
   <SafeAreaView >
     <ImageBackground
@@ -132,3 +132,4 @@ export default SecondRoute = () => (
 );
 
 
+export default SecondRoute;

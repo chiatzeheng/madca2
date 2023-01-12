@@ -36,7 +36,6 @@ const FirstRoute = () => {
                 <Line/>
                 <Text style={tw`text-base text-xl text-white `}><Ionicons name="swap-vertical-outline" size={24} color="white"/> Version(1.0.0) </Text>
             </View>
-
         </ImageBackground>
     </SafeAreaView>
     )
