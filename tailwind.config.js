@@ -9,14 +9,10 @@ module.exports = {
       transparent: "transparent",
       current: "currentColor",
       yellow: {
-        1077: "#f2e0c2"
+        'yellow-1077': "#f2e0c2"
       },
     fontFamily: {
-      sans: ["Inter", "ui-sans-serif", "system-ui"],
-      serif: ["ui-serif", "Georgia"],
-      mono: ["ui-monospace", "SFMono-Regular"],
-      display: ["Oswald"],
-      body: ["Inter"],
+    sans : ["InriaSans"],
     }
     
 

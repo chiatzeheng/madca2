@@ -10,32 +10,32 @@ import {
     TextInput,
     ImageBackground,
     Button,
-    TouchableOpacity,
+    TouchableHighlight,
     Image,
+    Form
 } from 'react-native'
 import { useForm } from "react-hook-form"
 import pb from "../lib/pocketbase"
 import tw from "twrnc"
-
 
 const Auth = () => {
 
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
 
+    let isLoggedIn = pb.authStore.isValid;
+
     async function login(data) {
         setLoading(true)
+        console.log(data.email, data.password)
         try {
             const authData = await pb
                 .collection("users")
                 .authWithPassword(data.email, data.password)
         } catch (e) {
-            alert(e)
+           console.log(e.message)
         }
-        console.log(pb.authStore.isValid);
-        console.log(pb.authStore.token);
-        console.log(pb.authStore.model.id);
-
+        setLoading(false)
     }
 
 
@@ -43,37 +43,22 @@ const Auth = () => {
         pb.authStore.clear();
     }
 
+    if(isLoggedIn) {
+        return (
+            <View>
+                <Text>
+                    Hello
+                </Text>
+            </View>
+        )
+    }
+    else
+
     return (
         <SafeAreaView style={styles.container}>
-            {/* <ImageBackground
-                source={require("../images/Homepage.png")}
-                style={styles.background}
-                resizeMode="cover">
-                <Text style={styles.text}>Email</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder={'email'}
-                    {...register("email", { required: true })}
-                />
-                <Text style={styles.text}>Password</Text>
-                <TextInput
-                    type="password"
-                    style={styles.input}
-                    placeholder={'password'}
-                    {...register("password", { required: true })}
-                />
-                         <Text style={styles.line}>____________________________________________________</Text>
-                <View style={styles.button} >
-                    <Button title="hello" type="submit" style={{ backgroundColor: "inherit" }} onPress={handleSubmit(login)} disabled={isLoading}>{isLoading ? "Loading" : "Login"}</Button>
-                </View>
-                <Text style={styles.text2}>Already a user?Login!</Text>
-                <View style={styles.logo}>
-                    <Image style={styles.logo} source={require("../images/profilepic.png")} />
-                </View>
-            </ImageBackground> */}
-            {isLoading && <Text>Loading..</Text>}
-            <Text style={tw`text-slate-500`}>Logged In: {pb.authStore.isValid.toString()}</Text>
-            <View style={styles.container}>
+            <Text>Please Log In</Text>
+            <Text style={tw`text-slate-500`}>Logged In: {isLoggedIn && pb.authStore.model.email }</Text>
+            <View style={styles.container} >
                 <TextInput
                     style={styles.input}
                     placeholder="Enter your email"
@@ -84,9 +69,9 @@ const Auth = () => {
                     placeholder="Enter your password"
                     {...register("password")}
                 />
-                <TouchableOpacity style={styles.button} disabled={isLoading}>
+                <TouchableHighlight style={styles.button} disabled = {isLoading}    onPress={handleSubmit(login)}>
                     <Text style={tw`text-slate-500`}>{isLoading ? "Loading": "Login"}</Text>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
         </SafeAreaView>
     )
@@ -158,3 +143,29 @@ const styles = StyleSheet.create({
 
 export default Auth
 
+  {/* <ImageBackground
+                source={require("../images/Homepage.png")}
+                style={styles.background}
+                resizeMode="cover">
+                <Text style={styles.text}>Email</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder={'email'}
+                    {...register("email", { required: true })}
+                />
+                <Text style={styles.text}>Password</Text>
+                <TextInput
+                    type="password"
+                    style={styles.input}
+                    placeholder={'password'}
+                    {...register("password", { required: true })}
+                />
+                         <Text style={styles.line}>____________________________________________________</Text>
+                <View style={styles.button} >
+                    <Button title="hello" type="submit" style={{ backgroundColor: "inherit" }} onPress={handleSubmit(login)} disabled={isLoading}>{isLoading ? "Loading" : "Login"}</Button>
+                </View>
+                <Text style={styles.text2}>Already a user?Login!</Text>
+                <View style={styles.logo}>
+                    <Image style={styles.logo} source={require("../images/profilepic.png")} />
+                </View>
+            </ImageBackground> */}

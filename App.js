@@ -7,14 +7,16 @@ import AuthPage from "./components/auth";
 
 const Stack = createNativeStackNavigator();
 
-export default App = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false,}}>
-        <Stack.Screen name="Auth" component={AuthPage} />
-        {/* <Stack.Screen name="homepage" component={Homepage} /> */}
+        <Stack.Screen name="homepage" component={Homepage} />
+        {/* <Stack.Screen name="Auth" component={AuthPage} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+export default App;
 
