@@ -20,7 +20,7 @@ const TabViewExample = () => {
   
   const _renderTabBar = (props) => {
     return (
-      <SafeAreaView  style = {tw `absolute bottom-0 w-100 bg-transparent justify-center flex-row mb-15 pl-5 `}>
+      <SafeAreaView  style = {tw `absolute bottom-0 w-100 bg-transparent justify-center flex-row mb-15 pr-3`}>
     {props.navigationState.routes.map((route, i) => {
       const isActive = props.navigationState.index === i;
       const backgroundColor = isActive ? "#555555" : "#a7a7a7";
@@ -55,7 +55,7 @@ const TabViewExample = () => {
     
     <TabView
       initialRouteName="Profile"
-      style = {tw.style({backgroundColor: "#001220"}  ,`bg-transparent -mb-9`)}
+      style = {tw.style({backgroundColor: "#001220"}  ,`-mb-9`)}
       tabBarPosition="bottom"
       animationEnabled={false}
       navigationState={{ index, routes }}

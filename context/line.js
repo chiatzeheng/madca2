@@ -1,10 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
-import tw from 'twrnc'
+import tws from '../customtwrnc.js'
 
 const Line = () => {
     return (
-      <View style={tw`border-white border-b h-1 w-full mt-4 mb-4`}/>
+      <View style={tws`border-yellow-5000 border-b w-full mt-4 mb-4`}/>
     )
   }
 

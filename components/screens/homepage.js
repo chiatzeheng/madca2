@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import {
   SafeAreaView,
@@ -13,6 +12,8 @@ import { Ionicons } from "@expo/vector-icons";
 import SearchBar from "../searchbar";
 import tw from "twrnc";
 import axios from "axios";
+import tws from "../../customtwrnc.js";
+
 
 const DATA = [
   {
@@ -68,6 +69,7 @@ const DATA = [
 
 
 const Item = ({ title, body }) => {
+  
   const [opacity] = useState(new Animated.Value(1));
   const ref = useRef();
 
@@ -93,9 +95,9 @@ const Item = ({ title, body }) => {
       onPressOut={animateOut}
     >
       <Animated.View ref={ref} style={{ opacity }}>
-        <View style={tw.style(`p-4 text-2xl h-25 w-70 leading-normal rounded-3xl my-3 mx-4`, {backgroundColor:"#F2E0C2"})}>
-          <Text style={tw` font-semibold text-2xl text-center`}>{title}</Text>
-          <Text style={tw`font-light text-l text-center`}>{body}</Text>
+        <View style={tws`p-4 text-2xl h-25 w-70 leading-normal rounded-3xl my-3 mx-4 bg-yellow-5000`}>
+          <Text style={tws` font-semibold text-2xl text-center`}>{title}</Text>
+          <Text style={tws`font-light text-l text-center`}>{body}</Text>
         </View>
       </Animated.View>
     </TouchableWithoutFeedback>
@@ -111,13 +113,13 @@ const SecondRoute = () => (
   <SafeAreaView >
     <ImageBackground
       source={require("../../images/Homepage.png")}
-      style={tw`justify-center items-center h-full w-full`}
+      style={tws`justify-center items-center h-full w-full`}
     >
       <StatusBar barStyle="light-content" backgroundColor="#001220" />
       <Image source={require("../../images/BFAS.png")} style={tw`h-25 w-30 `} />
-      <Text style={tw`text-3xl text-center text-white`}>Welcome to BFAS {`\n`}Jiang Yunfeng</Text>
+      <Text style={tws`text-3xl text-center text-yellow-5000`}>Welcome to BFAS {`\n`}{<Text style={tw`text-3xl font-bold`}>Jiang Yunfeng</Text>}</Text>
       <SearchBar/>
-      <Text style={tw`text-3xl text-center text-white pb-5`}>Eligible Bursary</Text>
+      <Text style={tws`text-3xl text-center text-yellow-5000 pb-5`}>Eligible Bursary</Text>
       <FlatList
         //onpress event which turns down opacity
         data={DATA}
@@ -125,7 +127,7 @@ const SecondRoute = () => (
         initialNumToRender={4}
         maxToRenderPerBatch={4}
         keyExtractor={item => item.id}
-        style={tw`max-h-90 mb-12`}
+        style={tws`max-h-90 mb-12`}
       />
     </ImageBackground>
   </SafeAreaView>
