@@ -11,8 +11,8 @@ export default App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false,}}>
-        <Stack.Screen name="Auth" component={AuthPage} />
-        {/* <Stack.Screen name="homepage" component={Homepage} /> */}
+        {/* <Stack.Screen name="Auth" component={AuthPage} /> */}
+        <Stack.Screen name="homepage" component={Homepage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
