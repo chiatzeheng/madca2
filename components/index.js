@@ -6,7 +6,6 @@ import FirstRoute from "./screens/settings";
 import SecondRoute from "./screens/homepage";
 import ThirdRoute from "./screens/profile";
 import tw from "twrnc";
-import Fonts from "../context/fonts";
 
 const TabViewExample = () => {
   const [index, setIndex] = React.useState(0);

@@ -142,30 +142,3 @@ const styles = StyleSheet.create({
 });
 
 export default Auth
-
-  {/* <ImageBackground
-                source={require("../images/Homepage.png")}
-                style={styles.background}
-                resizeMode="cover">
-                <Text style={styles.text}>Email</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder={'email'}
-                    {...register("email", { required: true })}
-                />
-                <Text style={styles.text}>Password</Text>
-                <TextInput
-                    type="password"
-                    style={styles.input}
-                    placeholder={'password'}
-                    {...register("password", { required: true })}
-                />
-                         <Text style={styles.line}>____________________________________________________</Text>
-                <View style={styles.button} >
-                    <Button title="hello" type="submit" style={{ backgroundColor: "inherit" }} onPress={handleSubmit(login)} disabled={isLoading}>{isLoading ? "Loading" : "Login"}</Button>
-                </View>
-                <Text style={styles.text2}>Already a user?Login!</Text>
-                <View style={styles.logo}>
-                    <Image style={styles.logo} source={require("../images/profilepic.png")} />
-                </View>
-            </ImageBackground> */}

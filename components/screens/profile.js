@@ -7,8 +7,8 @@ import {
   ImageBackground,
 } from "react-native";
 import tw from "twrnc";
-import fonts from "../../context/fonts";
 import Line from "../../context/line";
+import tws from "../../customtwrnc.js";
 
 
 const ThirdRoute = () => {
@@ -16,16 +16,17 @@ const ThirdRoute = () => {
   <SafeAreaView>
     <View style={{ position: "relative" }}>
       <ImageBackground source={require("../../images/Profile.png")}
-        style={tw`h-full w-full mt-2 items-center`}>
-        <Image source={require("../../images/profilepic.png")} style={tw`h-50 w-50 mt-10`} />
-        <Text style={tw`text-base text-l text-white text-center pt-10`}>Jiang Yunfeng                                             DIT1B09 {"\n"} 
+        style={tws`h-full w-full mt-7 items-center`}>
+        <Text style={tws`absolute text-4xl font-bold text-yellow-5000 text-center pt-5`}>Profile</Text>
+        <Image source={require("../../images/bigppf.png")} style={tw`h-45 w-45 mt-15`} />
+        <Text style={tws` text-base text-yellow-5000 text-center pt-10`}>Jiang Yunfeng                                             DIT1B09 {"\n"} 
         Student number                                          2227861</Text>
         <Line />
-        <Text style={tw.style(`text-base text-l text-white text-center`)}>Email{"\n"}jyf@ichat.sp.edu.sg</Text>
+        <Text style={tws` text-base text-yellow-5000 text-center`}>Email{"\n"}jyf@ichat.sp.edu.sg</Text>
         <Line />
-        <Text style={tw`text-base text-l text-white text-center`}>Citizenship status{" \n"}International </Text>
+        <Text style={tws` text-base text-yellow-5000 text-center`}>Citizenship status{" \n"}International </Text>
         <Line />
-        <Text style={tw`text-base text-l text-white text-center`}>Current GPA{"\n"}4.00</Text>
+        <Text style={tws` text-base text-yellow-5000 text-center`}>Current GPA{"\n"}4.00</Text>
       </ImageBackground>
     </View>
   </SafeAreaView>
@@ -33,3 +34,4 @@ const ThirdRoute = () => {
 };
 
 export default ThirdRoute;
+a
