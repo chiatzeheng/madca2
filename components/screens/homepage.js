@@ -11,7 +11,6 @@ import {
 import { TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import SearchBar from "../searchbar";
-import tw from "twrnc";
 import axios from "axios";
 import tws from "../../customtwrnc.js";
 
@@ -98,7 +97,7 @@ const Item = ({ title, body }) => {
       <Animated.View ref={ref} style={{ opacity }}>
         <View style={tws`p-4 text-2xl h-25 w-70 leading-normal rounded-3xl my-3 mx-4 bg-yellow-5000`}>
           <Text style={tws` font-semibold text-2xl text-center`}>{title}</Text>
-          <Text style={tws`font-light text-l text-center`}>{body}</Text>
+          <Text style={tws`font-light text-center`}>{body}</Text>
         </View>
       </Animated.View>
     </TouchableWithoutFeedback>
@@ -117,8 +116,8 @@ const SecondRoute = () => (
       style={tws`justify-center items-center h-full w-full`}
     >
       <StatusBar barStyle="light-content" backgroundColor="#001220" />
-      <Image source={require("../../images/BFAS.png")} style={tw`h-25 w-30 `} />
-      <Text style={tws`text-3xl text-inria text-center text-yellow-5000`}>Welcome to BFAS {`\n`}{<Text style={tw`text-3xl font-bold`}>Jiang Yunfeng</Text>}</Text>
+      <Image source={require("../../images/BFAS.png")} style={tws`h-25 w-30 `} />
+      <Text style={tws`text-3xl text-center text-yellow-5000`}>Welcome to BFAS {`\n`}{<Text style={tws`text-3xl font-bold`}>Jiang Yunfeng</Text>}</Text>
       <SearchBar/>
       <Text style={tws`text-3xl text-center text-yellow-5000 pb-5`}>Eligible Bursary</Text>
       <FlatList
