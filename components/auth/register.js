@@ -4,6 +4,7 @@ import { Text, View, TextInput, Button, Alert, ImageBackground, SafeAreaView, To
 import { useForm, Controller } from "react-hook-form";
 import tws from '../../customtwrnc.js';
 import pb from '../../lib/pb.js';
+let user = {}
 
 
 export default function Register({navigation}) {
@@ -16,7 +17,18 @@ export default function Register({navigation}) {
     }
   });
 
-  const onSubmit = data => console.log(data);
+    async function register(data){
+      try {
+        const authData = await pb.collection('users').create(user)
+        console.log(authData)
+        return authData
+      } catch (error) {
+        console.log(error)
+        console.log(error.data)
+      }
+    }
+
+
 
   return (
     <SafeAreaView>
@@ -73,7 +85,7 @@ export default function Register({navigation}) {
         />
    
 
-        <TouchableOpacity style={tws`mt-10 items-center bg-yellow-5000 rounded-full h-10 w-40`} title="Submit" onPress={handleSubmit(onSubmit)}>
+        <TouchableOpacity style={tws`mt-10 items-center bg-yellow-5000 rounded-full h-10 w-40`} title="Submit" onPress={handleSubmit(register)}>
           <Text style={tws`pt-1 text-blue-710 text-xl font-bold`}> Login </Text>
         </TouchableOpacity>
 
