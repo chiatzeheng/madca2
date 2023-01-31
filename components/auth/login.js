@@ -1,11 +1,14 @@
 
-import React, { useState } from 'react';
-import { Text, View, TextInput, Button, Alert, ImageBackground, SafeAreaView, TouchableOpacity, Image } from "react-native";
+import React from 'react';
+import { Text, View, TextInput , Alert, ImageBackground, SafeAreaView, TouchableOpacity, Image } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import tws from '../../customtwrnc.js';
-import pb from '../../lib/pb.js';
+import { useGlobalContext } from '../../context/GlobalContext.js';
 
-export default function Login() {
+export default function Login({navigation}) {
+
+  const { login } = useGlobalContext()
+  
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       email: '',
@@ -13,22 +16,17 @@ export default function Login() {
     }
   });
 
-  async function login(data) {
+  async function onSubmit(data){
     console.log(data)
-    try {
-
-      const authData = await pb.collection('users').authWithPassword(data.email, data.password);
-      console.log(authData)
-    }
-    catch (err) {
-      console.log(err.url)
-      console.log(err.OriginalError)
-      console.log(err.data)
-
+    const succeed = await login(data)
+    if(!succeed) {
+      alert('Invalid Credentials')
+    } 
+    else {
+      navigation.navigate('homepage')
     }
   }
-
-  const onSubmit = data => console.log(data);
+  
 
   return (
     <SafeAreaView>
@@ -50,7 +48,7 @@ export default function Login() {
           )}
           name="email"
         />
-        {errors.firstName && <Text>This is required.</Text>}
+        {errors.firstName && <Alert>This is required</Alert>}
         <Text style={tws`text-2xl font-bold text-yellow-5000 mt-5`}>Password</Text>
         <Controller
           control={control}
@@ -69,7 +67,7 @@ export default function Login() {
         />
    
 
-        <TouchableOpacity style={tws`mt-10 items-center bg-yellow-5000 rounded-full h-10 w-40`} title="Submit" onPress={handleSubmit(login)}>
+        <TouchableOpacity  title="Submit" onPress={handleSubmit(onSubmit)} style={tws`mt-10 items-center bg-yellow-5000 rounded-full h-10 w-40`}>
           <Text style={tws`pt-1 text-blue-710 text-xl font-bold`}> Login </Text>
         </TouchableOpacity>
         <View style={tws`pt-10 flex-row items-center`}>
@@ -77,11 +75,11 @@ export default function Login() {
           <Text style = {tws`font-bold text-yellow-5000 px-3`}>OR</Text>
           <View style={tws`h-0.3 w-40 bg-yellow-5000`}></View>
         </View>
-
+          
         <View style={tws`flex-row pt-10 `}>
-          <Text style={tws`text-base text-yellow-5000 `}>Need an account?</Text>
-          <TouchableOpacity style={tws``} title="Submit" onPress={handleSubmit(onSubmit)}>
-            <Text style={tws`text-base text-yellow-5000 font-bold underline`}>Sign Up!</Text>
+          <Text style={tws`text-base text-yellow-5000 `}>Dont have an account?</Text>
+          <TouchableOpacity style={tws``} title="Submit" onPress={()=> navigation.navigate('register') }>
+            <Text style={tws`pl-1 text-base text-yellow-5000 font-bold underline`}>Register!</Text>
           </TouchableOpacity>
         </View>
 

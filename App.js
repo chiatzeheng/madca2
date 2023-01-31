@@ -6,20 +6,22 @@ import Homepage from "./components/index";
 import Firstpage from "./components/auth/firstpage.js";
 import Register from "./components/auth/register.js";
 import Login from "./components/auth/login.js";
+import { AppContextProvider } from "./context/GlobalContext";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false,}}>
-        <Stack.Screen name="login" component={Login} /> 
-        <Stack.Screen name="homepage" component={Homepage} /> 
-        <Stack.Screen name="firstpage" component={Firstpage} /> 
-        <Stack.Screen name="register" component={Register} /> 
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AppContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false, }}>
+         <Stack.Screen name="firstpage" component={Firstpage} />
+          <Stack.Screen name="login" component={Login} />
+          <Stack.Screen name="register" component={Register} />
+          <Stack.Screen name="homepage" component={Homepage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AppContextProvider>
   );
 };
 

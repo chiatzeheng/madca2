@@ -13,6 +13,9 @@ import { Ionicons } from "@expo/vector-icons";
 import SearchBar from "../searchbar";
 import axios from "axios";
 import tws from "../../customtwrnc.js";
+import pb from "../../lib/pb.js";
+import { useGlobalContext } from "../../context/GlobalContext";
+
 
 
 const DATA = [
@@ -70,6 +73,8 @@ const DATA = [
 
 const Item = ({ title, body }) => {
   
+  const {user} = useGlobalContext();
+
   const [opacity] = useState(new Animated.Value(1));
   const ref = useRef();
 
