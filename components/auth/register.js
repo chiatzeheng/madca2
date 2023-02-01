@@ -19,9 +19,9 @@ export default function Register({navigation}) {
 
     async function register(data){
       try {
-        const authData = await pb.collection('users').create(user)
-        console.log(authData)
+        const authData = await pb.collection('users').create(data)
         return authData
+      
       } catch (error) {
         console.log(error)
         console.log(error.data)

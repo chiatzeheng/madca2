@@ -7,7 +7,7 @@ import Firstpage from "./components/auth/firstpage.js";
 import Register from "./components/auth/register.js";
 import Login from "./components/auth/login.js";
 import { AppContextProvider } from "./context/GlobalContext";
-import Settings from "./components/screens/settings.js";
+import FirstRoute from "./components/screens/settings.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +20,7 @@ const App = () => {
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="register" component={Register} />
           <Stack.Screen name="homepage" component={Homepage} />
-          <Stack.Screen name="settings" component={Settings} />
+          <Stack.Screen name="settings" component={FirstRoute} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppContextProvider>

@@ -73,7 +73,6 @@ const DATA = [
 
 const Item = ({ title, body }) => {
   
-  const {user} = useGlobalContext();
 
   const [opacity] = useState(new Animated.Value(1));
   const ref = useRef();
@@ -113,8 +112,10 @@ const renderItem = ({ item }) => (
   <Item title={item.title} body={item.body} />
 );
 
-const SecondRoute = () => (
+const SecondRoute = () => {
+  const {user} = useGlobalContext();
 
+  return (
   <SafeAreaView >
     <ImageBackground
       source={require("../../images/Homepage.png")}
@@ -122,7 +123,7 @@ const SecondRoute = () => (
     >
       <StatusBar barStyle="light-content" backgroundColor="#001220" />
       <Image source={require("../../images/BFAS.png")} style={tws`h-25 w-30 `} />
-      <Text style={tws`text-3xl text-center text-yellow-5000`}>Welcome to BFAS {`\n`}{<Text style={tws`text-3xl font-bold`}>Jiang Yunfeng</Text>}</Text>
+      <Text style={tws`text-3xl text-center text-yellow-5000`}>Welcome to BFAS {`\n`}{<Text style={tws`text-3xl font-bold`}>{user.record.name}</Text>}</Text>
       <SearchBar/>
       <Text style={tws`text-3xl text-center text-yellow-5000 pb-5`}>Eligible Bursary</Text>
       <FlatList
@@ -136,7 +137,8 @@ const SecondRoute = () => (
       />
     </ImageBackground>
   </SafeAreaView>
-);
+  )
+  };
 
 
 export default SecondRoute;
