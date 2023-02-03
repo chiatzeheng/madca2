@@ -8,6 +8,8 @@ import Register from "./components/auth/register.js";
 import Login from "./components/auth/login.js";
 import { AppContextProvider } from "./context/GlobalContext";
 import FirstRoute from "./components/screens/settings.js";
+import SecondRoute from "./components/screens/homepage";
+import ThirdRoute from "./components/screens/profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +23,8 @@ const App = () => {
           <Stack.Screen name="register" component={Register} />
           <Stack.Screen name="homepage" component={Homepage} />
           <Stack.Screen name="settings" component={FirstRoute} />
+          <Stack.Screen name="home" component={SecondRoute} />
+          <Stack.Screen name="profile" component={ThirdRoute} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppContextProvider>

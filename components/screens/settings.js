@@ -28,7 +28,8 @@ const FirstRoute = () => {
     const [currencyRate, setCurrencyRate] = useState(0);
     const [currencySymbol, setCurrencySymbol] = useState("$");
     const [currencyName, setCurrencyName] = useState("SGD");
-    const [isEnabled, setIsEnabled] = useState(true);
+    const [notifications, setNotification] = useState(true)
+    const [darkMode, setDarkMode] = useState(true);
 
     const toggleSwitch = () => {
         setIsEnabled(previousState => !previousState);
@@ -53,7 +54,12 @@ const FirstRoute = () => {
 
                 <View style={tws` pt-10 `}>
                     <Text style={styles.text}><Ionicons name="notifications-circle" size={24} color="#F2E0C2" /> Notifications</Text>
-                   <CustSwitch />
+                    <CustSwitch
+                        isEnabled={notifications}
+                        toggleSwitch={() => {
+                            setNotification(previousState => !previousState);
+                        }}
+                    ></CustSwitch>
                 </View>
                 <Line />
 
@@ -82,7 +88,12 @@ const FirstRoute = () => {
                 <Line />
                 <View >
                     <Text style={styles.text}><Ionicons name="contrast" size={24} color="#F2E0C2" /> DarkMode</Text>
-                    <CustSwitch  />
+                    <CustSwitch
+                        isEnabled={darkMode}
+                        toggleSwitch={() => {
+                            setDarkMode(previousState => !previousState);
+                        }}
+                    ></CustSwitch>
                 </View>
                 <Line />
                 <Text style={styles.text}><Ionicons name="swap-vertical-outline" size={24} color="#F2E0C2" /> Version(1.0.0)</Text>
@@ -114,3 +125,11 @@ const styles = StyleSheet.create({
 
 
 export default FirstRoute;
+
+
+
+
+
+
+
+
