@@ -6,6 +6,7 @@ import FirstRoute from "./screens/settings";
 import SecondRoute from "./screens/homepage";
 import ThirdRoute from "./screens/profile";
 import tw from "twrnc";
+import tws from "../customtwrnc.js";
 
 const TabViewExample = () => {
   const [index, setIndex] = React.useState(0);
@@ -53,8 +54,8 @@ const TabViewExample = () => {
   return (
     
     <TabView
-      initialRouteName="Profile"
-      style = {tw.style({backgroundColor: "#001220"}  ,`bg-transparent -mb-9`)}
+      initialRouteName="SecondRoute"
+      style = {tws`bg-blue-710 -mb-9`}
       tabBarPosition="bottom"
       animationEnabled={false}
       navigationState={{ index, routes }}

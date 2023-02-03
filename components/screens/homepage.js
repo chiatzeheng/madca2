@@ -1,110 +1,29 @@
 
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import {
   SafeAreaView,
   ImageBackground,
   View,
   Image,
   FlatList, Text, StatusBar,
-  Animated, TouchableWithoutFeedback
+  TouchableOpacity, Button
 } from "react-native";
 import { TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import SearchBar from "../searchbar";
-import axios from "axios";
 import tws from "../../customtwrnc.js";
 import pb from "../../lib/pb.js";
 import { useGlobalContext } from "../../context/GlobalContext";
-
-
-
-const DATA = [
-  {
-    id: '1',
-    title: 'Zalora Scholarship',
-    body: " Provided by Zalora"
-  },
-  {
-    id: '2',
-    title: 'Cho Tiam Poh Bursary',
-    body: "Provided by OCBC"
-
-  },
-  {
-    id: '3',
-    title: 'Third Item',
-    body: 'Provided by Ministry of Defence'
-  },
-  {
-    id: '4',
-    title: 'Zalora Scholarship',
-    body: " Provided by Zalora"
-  },
-  {
-    id: '5',
-    title: 'Cho Tiam Poh Bursary',
-    body: "Provided by OCBC"
-
-  },
-  {
-    id: '6',
-    title: 'Third Item',
-    body: 'Provided by Ministry of Defence'
-  },
-  {
-    id: '7',
-    title: 'Zalora Scholarship',
-    body: " Provided by Zalora"
-  },
-  {
-    id: '8',
-    title: 'Cho Tiam Poh Bursary',
-    body: "Provided by OCBC"
-
-  },
-  {
-    id: '9',
-    title: 'Third Item',
-    body: 'Provided by Ministry of Defence'
-  },
-];
-
-
+import { useNavigation } from "@react-navigation/native";
 
 const Item = ({ title, body }) => {
-  
-
-  const [opacity] = useState(new Animated.Value(1));
-  const ref = useRef();
-
-  const animateIn = () => {
-    Animated.timing(opacity, {
-      toValue: 0.5,
-      duration: 250,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const animateOut = () => {
-    Animated.timing(opacity, {
-      toValue: 1,
-      duration: 250,
-      useNativeDriver: true,
-    }).start();
-  };
-
   return (
-    <TouchableWithoutFeedback
-      onPressIn={animateIn}
-      onPressOut={animateOut}
-    >
-      <Animated.View ref={ref} style={{ opacity }}>
-        <View style={tws`p-4 text-2xl h-25 w-70 leading-normal rounded-3xl my-3 mx-4 bg-yellow-5000`}>
-          <Text style={tws` font-semibold text-2xl text-center`}>{title}</Text>
-          <Text style={tws`font-light text-center`}>{body}</Text>
-        </View>
-      </Animated.View>
-    </TouchableWithoutFeedback>
+    <TouchableOpacity >
+      <View style={tws`p-4 text-2xl h-25 w-70 leading-normal rounded-3xl my-3 mx-4 bg-yellow-5000`}>
+        <Text style={tws` font-semibold text-2xl text-center`}>{title}</Text>
+        <Text style={tws`font-light text-center`}>{body}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -113,32 +32,52 @@ const renderItem = ({ item }) => (
 );
 
 const SecondRoute = () => {
-  const {user} = useGlobalContext();
+
+  const navigation = useNavigation();
+  const { user } = useGlobalContext();
+
+  const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await pb.collection('data').getFullList(10 ,{ sort: '-created', });
+        setRecords(data.map((record, index) => ({ 
+          body: record.body, 
+          id: index + 1, 
+          title: record.title 
+        })));
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
-  <SafeAreaView >
-    <ImageBackground
-      source={require("../../images/Homepage.png")}
-      style={tws`justify-center items-center h-full w-full`}
-    >
-      <StatusBar barStyle="light-content" backgroundColor="#001220" />
-      <Image source={require("../../images/BFAS.png")} style={tws`h-25 w-30 `} />
-      <Text style={tws`text-3xl text-center text-yellow-5000`}>Welcome to BFAS {`\n`}{<Text style={tws`text-3xl font-bold`}>{user.record.name}</Text>}</Text>
-      <SearchBar/>
-      <Text style={tws`text-3xl text-center text-yellow-5000 pb-5`}>Eligible Bursary</Text>
-      <FlatList
-        //onpress event which turns down opacity
-        data={DATA}
-        renderItem={renderItem}
-        initialNumToRender={4}
-        maxToRenderPerBatch={4}
-        keyExtractor={item => item.id}
-        style={tws`max-h-90 mb-12`}
-      />
-    </ImageBackground>
-  </SafeAreaView>
+    <SafeAreaView >
+      <ImageBackground
+        source={require("../../images/Homepage.png")}
+        style={tws`justify-center items-center h-full w-full`}
+      >
+        <StatusBar barStyle="light-content" backgroundColor="#001220" />
+        <Image source={require("../../images/BFAS.png")} style={tws`h-25 w-30 `} />
+        <Text style={tws`text-3xl text-center text-yellow-5000`}>Welcome to BFAS {`\n`}{<Text style={tws`text-3xl font-bold`}>{user.record.name}</Text>}</Text>
+        <SearchBar />
+        <Text style={tws`text-3xl text-center text-yellow-5000 pb-5`}>Eligible Bursary</Text>
+        <FlatList
+          //onpress event which turns down opacity
+          data={records}
+          renderItem={renderItem}
+          initialNumToRender={4}
+          maxToRenderPerBatch={4}
+          keyExtractor={item => item.id}
+          style={tws`max-h-90 mb-12`}
+        />
+      </ImageBackground>
+    </SafeAreaView>
   )
-  };
+};
 
 
 export default SecondRoute;

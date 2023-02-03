@@ -22,8 +22,28 @@ export function AppContextProvider({children}) {
             return false
         }
     }
+
+    async function googlelogin(data){
+        try{
+            const authData = await pb.collection('users').authWithOAuth2(
+                'google',
+                'CODE',
+                'VERIFIER',
+                'REDIRECT_URL',
+                // optional data that will be used for the new account on OAuth2 sign-up
+                {
+                  'name': 'test',
+                },
+            );
+            return true 
+        }
+        catch(err){
+            console.log(err)
+
+        }
+    }
     return (
-        <AppContext.Provider value={{ login, user }}>
+        <AppContext.Provider value={{ login, googlelogin, user }}>
             {children}
         </AppContext.Provider>
     )

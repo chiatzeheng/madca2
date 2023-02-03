@@ -9,7 +9,7 @@ export default function Login({navigation}) {
 
   const { login } = useGlobalContext()
   
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const { control, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
       email: '',
       password: ''
@@ -19,6 +19,7 @@ export default function Login({navigation}) {
   async function onSubmit(data){
     console.log(data)
     const succeed = await login(data)
+    reset()
     if(!succeed) {
       alert('Invalid Credentials')
     } 
